@@ -4,7 +4,7 @@
 // @namespace   linyows
 // @include     https://github.com/*
 // @author      linyows <linyows@gmail.com>
-// @version     1.0.0
+// @version     1.0.1
 // ==/UserScript==
 function useLibrary(library, callback)
 {
@@ -25,7 +25,6 @@ function useLibrary(library, callback)
 
 function userScript()
 {
-  var m = moment;
   $('time').each(function(){
     var time = moment($(this).attr('datetime'));
     $(this).attr('title', time.format('MMM D, YYYY h:mm a'));
@@ -34,5 +33,8 @@ function userScript()
   });
 }
 
-useLibrary(['//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js',
-            '//raw.github.com/timrwood/moment/master/min/moment.min.js'], userScript);
+var library = ['//raw.github.com/timrwood/moment/master/min/moment.min.js'];
+if (typeof window.jQuery != 'function') {
+  library.push('//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
+}
+useLibrary(library, userScript);
