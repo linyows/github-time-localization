@@ -4,7 +4,7 @@
 // @namespace   linyows
 // @include     https://github.com/*
 // @author      linyows <linyows@gmail.com>
-// @version     1.0.1
+// @version     1.0.2
 // ==/UserScript==
 function useLibrary(library, callback)
 {
@@ -27,9 +27,9 @@ function userScript()
 {
   $('time').each(function(){
     var time = moment($(this).attr('datetime'));
-    $(this).attr('title', time.format('MMM D, YYYY h:mm a'));
-    var style = 'font-size:0.85em;width:auto;height:auto;top:0;margin:0 0.4em';
-    $(this).html('<i class="mini-icon mini-icon-time" style="' + style + '"></i>' + time.fromNow());
+    $(this).attr('title', 'Localized Time: ' + time.format('MMM D, YYYY h:mm a'));
+    $(this).attr('datetime', time.format());
+    $(this).html(time.fromNow());
   });
 }
 
